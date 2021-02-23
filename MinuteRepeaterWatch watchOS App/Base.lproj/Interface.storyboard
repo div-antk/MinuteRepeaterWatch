@@ -12,6 +12,12 @@
                 <controller fullScreen="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="MinuteRepeaterWatch" customModuleProvider="target">
                     <items>
                         <spriteKitScene alignment="left" id="ARY-87-yzO"/>
+                        <button width="1" height="21" alignment="left" id="8ec-RC-2BG">
+                            <color key="backgroundColor" red="1" green="0.87450980392156863" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="startButton" destination="AgC-eL-Hgc" id="BTh-kY-A50"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
                         <outlet property="skInterface" destination="ARY-87-yzO" id="U6w-Od-uXj"/>

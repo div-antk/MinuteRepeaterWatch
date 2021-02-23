@@ -23,6 +23,8 @@
 		3B0306A625E4F168000506A7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B03067525E4F163000506A7 /* GameScene.swift */; };
 		3B0306A725E4F168000506A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B03067625E4F168000506A7 /* Assets.xcassets */; };
 		3B0306A825E4F168000506A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B03067625E4F168000506A7 /* Assets.xcassets */; };
+		3B0306BB25E4F8AB000506A7 /* high.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B0306B925E4F8AB000506A7 /* high.wav */; };
+		3B0306BC25E4F8AB000506A7 /* low.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B0306BA25E4F8AB000506A7 /* low.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		3B03069D25E4F168000506A7 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		3B03069F25E4F168000506A7 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		3B0306A125E4F168000506A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B0306B925E4F8AB000506A7 /* high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = high.wav; sourceTree = "<group>"; };
+		3B0306BA25E4F8AB000506A7 /* low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = low.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,8 @@
 				3B03069D25E4F168000506A7 /* InterfaceController.swift */,
 				3B03069F25E4F168000506A7 /* ExtensionDelegate.swift */,
 				3B0306A125E4F168000506A7 /* Info.plist */,
+				3B0306B925E4F8AB000506A7 /* high.wav */,
+				3B0306BA25E4F8AB000506A7 /* low.wav */,
 			);
 			path = "MinuteRepeaterWatch watchOS App Extension";
 			sourceTree = "<group>";
@@ -290,6 +296,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B0306BC25E4F8AB000506A7 /* low.wav in Resources */,
+				3B0306BB25E4F8AB000506A7 /* high.wav in Resources */,
 				3B0306A425E4F168000506A7 /* GameScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
