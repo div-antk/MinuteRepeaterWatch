@@ -14,9 +14,11 @@ class GameScene: SKScene {
     var minuteHand:SKSpriteNode = SKSpriteNode()
     var secondHand:SKSpriteNode = SKSpriteNode()
     
-    fileprivate var label : SKLabelNode?
-    fileprivate var spinnyNode : SKShapeNode?
+    var square:SKSpriteNode = SKSpriteNode()
 
+    
+    fileprivate var label : SKLabelNode?
+//    fileprivate var spinnyNode : SKShapeNode?
     
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -40,28 +42,28 @@ class GameScene: SKScene {
         }
         
         // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
+        // let w = (self.size.width + self.size.height) * 0.05
+        // self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
         
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 4.0
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-            
-            #if os(watchOS)
-                // For watch we just periodically create one of these and let it spin
-                // For other platforms we let user touch/mouse events create these
-                spinnyNode.position = CGPoint(x: 0.0, y: 0.0)
-                spinnyNode.strokeColor = SKColor.red
-                self.run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 2.0),
-                                                                   SKAction.run({
-                                                                       let n = spinnyNode.copy() as! SKShapeNode
-                                                                       self.addChild(n)
-                                                                   })])))
-            #endif
-        }
+//        if let spinnyNode = self.spinnyNode {
+//            spinnyNode.lineWidth = 4.0
+//            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
+//            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
+//                                              SKAction.fadeOut(withDuration: 0.5),
+//                                              SKAction.removeFromParent()]))
+//
+//            #if os(watchOS)
+//                // For watch we just periodically create one of these and let it spin
+//                // For other platforms we let user touch/mouse events create these
+//                spinnyNode.position = CGPoint(x: 0.0, y: 0.0)
+//                // spinnyNode.strokeColor = SKColor.red
+//                self.run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 2.0),
+//                                                                   SKAction.run({
+//                                                                       let n = spinnyNode.copy() as! SKShapeNode
+//                                                                       self.addChild(n)
+//                                                                   })])))
+//            #endif
+//        }
     }
     
     #if os(watchOS)
@@ -90,31 +92,27 @@ class GameScene: SKScene {
     }
     #endif
 
-    func makeSpinny(at pos: CGPoint, color: SKColor) {
-        if let spinny = self.spinnyNode?.copy() as! SKShapeNode? {
-            spinny.position = pos
-            spinny.strokeColor = color
-            self.addChild(spinny)
-        }
-    }
+//    func makeSpinny(at pos: CGPoint, color: SKColor) {
+//        if let spinny = self.spinnyNode?.copy() as! SKShapeNode? {
+//            spinny.position = pos
+//            // spinny.strokeColor = color
+//            self.addChild(spinny)
+//        }
+//    }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         let date = Date()
         
+        // 時刻の取得
         let calender = Calendar.current
-        
         let hour = CGFloat(calender.component(.hour, from: date))
-        
         let minutes = CGFloat(calender.component(.minute, from: date))
-        
         let seconds = CGFloat(calender.component(.second, from: date))
         
         // 針の動く設定
         hourHand.zRotation = -1 * deg2rad(hour * 30 + minutes/2)
-        
         minuteHand.zRotation = -1 * deg2rad(minutes * 6)
-        
         secondHand.zRotation = -1 * deg2rad(seconds * 6)
     }
     
@@ -126,38 +124,38 @@ class GameScene: SKScene {
 
 #if os(iOS) || os(tvOS)
 // Touch-based event handling
-extension GameScene {
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
-        for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.green)
-        }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.blue)
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
-        }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
-        }
-    }
-    
-   
-}
+//extension GameScene {
+//
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        if let label = self.label {
+//            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+//        }
+//
+//        for t in touches {
+//            self.makeSpinny(at: t.location(in: self), color: SKColor.green)
+//        }
+//    }
+//
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for t in touches {
+//            self.makeSpinny(at: t.location(in: self), color: SKColor.blue)
+//        }
+//    }
+//
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for t in touches {
+//            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
+//        }
+//    }
+//
+//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for t in touches {
+//            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
+//        }
+//    }
+//
+//
+//}
 #endif
 
 #if os(OSX)
@@ -182,3 +180,8 @@ extension GameScene {
 }
 #endif
 
+//func setupButton() {
+//
+//    let Rect = CGRect(x: 0, y: 0, width: 40, height: 40)
+//    let citcle = UIBezierPath(ovalIn: Rect)
+//}
