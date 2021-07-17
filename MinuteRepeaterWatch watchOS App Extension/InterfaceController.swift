@@ -63,45 +63,94 @@ class InterfaceController: WKInterfaceController {
             let quarter = time.minute! / 15
             let minute = time.minute! % 15
             
-            // 第一ゴング
-            for _ in 0 ..< hour {
-                print("dong")
-                self.lowGong()
-                // 0.5秒待つ
-                Thread.sleep(forTimeInterval: 0.5)
-            }
+            self.first(hour: hour)
+            self.second(quarter: quarter)
+            self.third(minute: minute)
             
-            // 第二ゴングが鳴る場合遅延処理
-            if quarter > 0 {
-                Thread.sleep(forTimeInterval: 0.7)
-            }
+//             第一ゴング
+//            for _ in 0 ..< hour {
+//                print("dong")
+//                self.lowGong()
+//                // 0.5秒待つ
+//                Thread.sleep(forTimeInterval: 0.5)
+//            }
             
-            // 第二ゴング
-            for _ in 0 ..< quarter {
-                print("ding-dong")
-                self.highGong()
-                // 0.4秒待つ
-                Thread.sleep(forTimeInterval: 0.4)
-                self.lowGong()
-                
-                // 0.5秒待つ
-                Thread.sleep(forTimeInterval: 0.5)
-            }
+//            // 第二ゴングが鳴る場合遅延処理
+//            if quarter > 0 {
+//                Thread.sleep(forTimeInterval: 0.7)
+//            }
+//
+//            // 第二ゴング
+//            for _ in 0 ..< quarter {
+//                print("ding-dong")
+//                self.highGong()
+//                // 0.4秒待つ
+//                Thread.sleep(forTimeInterval: 0.4)
+//                self.lowGong()
+//
+//                // 0.5秒待つ
+//                Thread.sleep(forTimeInterval: 0.5)
+//            }
             
-            // 第三ゴングが鳴る場合遅延処理
-            if minute > 0 {
-                Thread.sleep(forTimeInterval: 0.7)
-            }
-            
-            // 第三ゴング
-            for _ in 0 ..< minute {
-                print("ding")
-                self.highGong()
-                
-                // 0.5秒待つ
-                Thread.sleep(forTimeInterval: 0.5)
-            }
+//            // 第三ゴングが鳴る場合遅延処理
+//            if minute > 0 {
+//                Thread.sleep(forTimeInterval: 0.7)
+//            }
+//
+//            // 第三ゴング
+//            for _ in 0 ..< minute {
+//                print("ding")
+//                self.highGong()
+//
+//                // 0.5秒待つ
+//                Thread.sleep(forTimeInterval: 0.5)
+//            }
             self.isPlaying = false
+        }
+    }
+    
+    private func first(hour: Int) {
+        // 第一ゴング
+        for _ in 0 ..< hour {
+            print("dong")
+            self.lowGong()
+            // 0.5秒待つ
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+    }
+    
+    private func second(quarter: Int) {
+        // 第二ゴングが鳴る場合遅延処理
+        if quarter > 0 {
+            Thread.sleep(forTimeInterval: 0.7)
+        }
+        
+        // 第二ゴング
+        for _ in 0 ..< quarter {
+            print("ding-dong")
+            self.highGong()
+            // 0.4秒待つ
+            Thread.sleep(forTimeInterval: 0.4)
+            self.lowGong()
+            
+            // 0.5秒待つ
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+    }
+    
+    private func third(minute: Int) {
+        // 第三ゴングが鳴る場合遅延処理
+        if minute > 0 {
+            Thread.sleep(forTimeInterval: 0.7)
+        }
+        
+        // 第三ゴング
+        for _ in 0 ..< minute {
+            print("ding")
+            self.highGong()
+            
+            // 0.5秒待つ
+            Thread.sleep(forTimeInterval: 0.5)
         }
     }
     
