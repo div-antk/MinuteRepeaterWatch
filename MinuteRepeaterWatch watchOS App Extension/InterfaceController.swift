@@ -50,6 +50,36 @@ class InterfaceController: WKInterfaceController {
         repeater()
     }
     
+    func doMultiAsyncProcess() {
+        
+        let dispatchGroup = DispatchGroup()
+        let dispatchQueue = DispatchQueue(label: "queue", attributes: .concurrent)
+        
+        let now = Date()
+        let time = Calendar.current.dateComponents([.hour, .minute], from: now)
+        
+        // hour を12時間で丸める
+        let hour = time.hour! % 12
+        let quarter = time.minute! / 15
+        let minute = time.minute! % 15
+        
+        dispatchGroup.enter()
+        dispatchQueue.async(group: dispatchGroup) {
+            [weak self] in
+            dispatchGroup.enter()
+            
+            self?.first(hour: hour) {
+                dispatchGroup.leave()
+                self?.second(quarter: quarter) {
+                    self?.third(minute: minute)
+                }
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
+            print("おわり(´・ω・｀)")
+        }
+    }
+    
     // リピーター機能
     func repeater() {
         
@@ -109,7 +139,7 @@ class InterfaceController: WKInterfaceController {
         }
     }
     
-    private func first(hour: Int) {
+    private func first(hour: Int) -> Void {
         // 第一ゴング
         for _ in 0 ..< hour {
             print("dong")
